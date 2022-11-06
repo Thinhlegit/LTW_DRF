@@ -42,11 +42,20 @@ class ChangePasswordSerializer(serializers.Serializer):
 from rest_framework import serializers
 from .models import ImageUpload
 
-class ImageUploadSerializer(serializers.HyperlinkedModelSerializer):
+class ImageUploadSerializer(serializers.ModelSerializer):
+    # def test(self, data):
+    #     print(data['images'])
+    class Meta:        
+        model = ImageUpload
+        fields = '__all__'
+
+
+from rest_framework import serializers
+from accounts.models import ProfileModel
+
+class ProfileSerializer(serializers.ModelSerializer):
+
 
     class Meta:
-        model = ImageUpload
-        fields= (
-            'title',
-            'images'
-        )   
+        model = ProfileModel
+        fields = '__all__'
