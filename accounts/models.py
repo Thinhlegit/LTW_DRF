@@ -22,6 +22,24 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # to:
         [reset_password_token.user.email]
     )
+from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
 class ImageUpload(models.Model):
     title = models.CharField(max_length=50)
     images = models.ImageField('images')
+    owner = models.ForeignKey(User, related_name="img", null=True, on_delete=CASCADE)
+
+from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
+from datetime import timezone
+
+class ProfileModel(models.Model):
+    
+    description = models.CharField(max_length=500)
+    location = models.CharField(max_length=500)
+    owner = models.ForeignKey(User, related_name="profile", null=True, on_delete=CASCADE)
+    phone_number = models.CharField(max_length=10)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.description
+
