@@ -23,10 +23,12 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         [reset_password_token.user.email]
     )
 from django.contrib.auth.models import User
+from django_resized import ResizedImageField
 from django.db.models.deletion import CASCADE
 class ImageUpload(models.Model):
     title = models.CharField(max_length=50)
-    images = models.ImageField('images')
+    # images = models.ImageField('images')
+    images = ResizedImageField(scale=0.5, quality=75, upload_to='whatever')
     owner = models.ForeignKey(User, related_name="img", null=True, on_delete=CASCADE)
 
 from django.contrib.auth.models import User

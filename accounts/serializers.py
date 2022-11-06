@@ -43,15 +43,18 @@ from rest_framework import serializers
 from .models import ImageUpload
 
 class ImageUploadSerializer(serializers.ModelSerializer):
-
-    class Meta:
+    # def test(self, data):
+    #     print(data['images'])
+    class Meta:        
         model = ImageUpload
         fields = '__all__'
+
 
 from rest_framework import serializers
 from accounts.models import ProfileModel
 
 class ProfileSerializer(serializers.ModelSerializer):
+
 
     class Meta:
         model = ProfileModel

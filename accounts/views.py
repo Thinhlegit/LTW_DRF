@@ -94,6 +94,7 @@ from .serializers import ImageUploadSerializer
 
 class ImageUploadViewSet(viewsets.ModelViewSet):
     queryset = ImageUpload.objects.all()
+
     serializer_class = ImageUploadSerializer
     permission_classes = [
         permissions.IsAuthenticated
@@ -102,7 +103,9 @@ class ImageUploadViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-from rest_framework import serializers, viewsets, permissions
+#Profile
+
+from rest_framework import viewsets, permissions
 
 from .models import ProfileModel
 from .serializers import ProfileSerializer
@@ -117,3 +120,6 @@ class LeadViewset(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+
