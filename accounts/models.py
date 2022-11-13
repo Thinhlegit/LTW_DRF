@@ -36,9 +36,11 @@ from django.db.models.deletion import CASCADE
 from datetime import timezone
 
 class ProfileModel(models.Model):
-    
+    gender = models.CharField(max_length=10)
+    relationship = models.CharField(max_length=50)
     description = models.CharField(max_length=500)
     location = models.CharField(max_length=500)
+    detaillocation = models.CharField(max_length=500)
     owner = models.ForeignKey(User, related_name="profile", null=True, on_delete=CASCADE)
     phone_number = models.CharField(max_length=10)
     date = models.DateTimeField(auto_now_add=True)
